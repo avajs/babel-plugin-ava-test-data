@@ -13,32 +13,54 @@ $ npm install --save babel-plugin-ava-test-data
 ## Usage
 
 ```js
-const babelPluginAvaTestData = require('babel-plugin-ava-test-data');
+import * as babel from 'babel-core';
+import plugin from 'babel-plugin-test-data';
 
-babelPluginAvaTestData('unicorns');
-//=> 'unicorns & rainbows'
+var result = babel.transform(
+  `
+  import test from 'ava';
+
+  test(t => {});                   // adds empty array to metadata
+  test.skip('foo', t => {});       // adds array ['skip'] to metadata
+  test.serial.cb('foo', t => {});  // adds array ['serial', 'cb'] to metadata
+  `,
+  {plugins: [plugin]}
+);
+
+//
+
+var metadata = plugin.metadata(result);
+```
+
+Resulting metadata is:
+
+```js
+metadata = [
+  [],
+  ['skip'],
+  ['serial', 'cb']
+]
 ```
 
 
 ## API
 
-### babelPluginAvaTestData(input, [options])
+### plugin.metadata(result, [create])
 
-#### input
+Extract the test call metadata from the babel result.
 
-Type: `string`
+#### result
 
-Lorem ipsum.
+Type: `babel transform result`
 
-#### options
+The result from calling `babel.transform`
 
-##### foo
+#### create
 
-Type: `boolean`<br>
+Type: `boolean` <br>
 Default: `false`
 
-Lorem ipsum.
-
+If `true` and no test calls were found, create and return an empty array. This guarantees the result is always an array. Otherwise it will return `null` if no test calls are found.
 
 ## License
 
