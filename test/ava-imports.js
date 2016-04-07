@@ -15,13 +15,13 @@ test('isAvaImport', t => {
 });
 
 test('avaImports', t => {
-	t.same(avaImports(firstStatement(`var test = require('ava');`)), [{
+	t.deepEqual(avaImports(firstStatement(`var test = require('ava');`)), [{
 		id: 'test',
 		chain: []
 	}]);
 
 	var value = avaImports(firstStatement(`var serial = require('ava').serial;`));
-	t.same(value, [{
+	t.deepEqual(value, [{
 		id: 'serial',
 		chain: ['serial']
 	}]);

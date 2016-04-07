@@ -7,7 +7,7 @@ test('straight test call', t => {
 		`var test = require('ava');
 		test('foo', t => {});`
 	));
-	t.same(value, []);
+	t.deepEqual(value, []);
 });
 
 test('test is not ava', t => {
@@ -23,7 +23,7 @@ test('test.skip', t => {
 		`var test = require('ava');
 		test.skip('foo', t => {});`
 	));
-	t.same(value, ['skip']);
+	t.deepEqual(value, ['skip']);
 });
 
 test('require("ava").skip', t => {
@@ -31,7 +31,7 @@ test('require("ava").skip', t => {
 		`var test = require('ava').skip;
 		test('foo', t => {});`
 	));
-	t.same(value, ['skip']);
+	t.deepEqual(value, ['skip']);
 });
 
 test('test = require("ava").serial; test.only', t => {
@@ -39,7 +39,7 @@ test('test = require("ava").serial; test.only', t => {
 		`var test = require('ava').serial;
 		test.only('foo', t => {});`
 	));
-	t.same(value, ['serial', 'only']);
+	t.deepEqual(value, ['serial', 'only']);
 });
 
 test('import test - straight call', t => {
@@ -47,7 +47,7 @@ test('import test - straight call', t => {
 		`import test from 'ava';
 		test('foo', t => {});`
 	));
-	t.same(value, []);
+	t.deepEqual(value, []);
 });
 
 test('import skip ', t => {
@@ -55,5 +55,5 @@ test('import skip ', t => {
 		`import {skip} from 'ava';
 		skip('foo', t => {});`
 	));
-	t.same(value, ['skip']);
+	t.deepEqual(value, ['skip']);
 });

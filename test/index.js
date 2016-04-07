@@ -17,7 +17,7 @@ test('import ava - use directly', t => {
 		test('foo', t => {});`
 	);
 
-	t.same(metadata, [[]]);
+	t.deepEqual(metadata, [[]]);
 });
 
 test('import non ava', t => {
@@ -26,7 +26,7 @@ test('import non ava', t => {
 		test('foo', t => {});`
 	);
 
-	t.same(metadata, null);
+	t.deepEqual(metadata, null);
 });
 
 test('import skip - use directly', t => {
@@ -35,7 +35,7 @@ test('import skip - use directly', t => {
 		skip('foo', t => {});`
 	);
 
-	t.same(metadata, [['skip']]);
+	t.deepEqual(metadata, [['skip']]);
 });
 
 test('import serial - skip it', t => {
@@ -44,7 +44,7 @@ test('import serial - skip it', t => {
 		serial.skip('foo', t => {});`
 	);
 
-	t.same(metadata, [['serial', 'skip']]);
+	t.deepEqual(metadata, [['serial', 'skip']]);
 });
 
 test('import serial - multiple uses', t => {
@@ -54,7 +54,7 @@ test('import serial - multiple uses', t => {
 		serial.skip('bar', t => {});`
 	);
 
-	t.same(metadata, [['serial'], ['serial', 'skip']]);
+	t.deepEqual(metadata, [['serial'], ['serial', 'skip']]);
 });
 
 test('multiple imports - multiple uses', t => {
@@ -65,5 +65,5 @@ test('multiple imports - multiple uses', t => {
 		serial.skip('baz', t => {});`
 	);
 
-	t.same(metadata, [[], ['skip'], ['serial', 'skip']]);
+	t.deepEqual(metadata, [[], ['skip'], ['serial', 'skip']]);
 });
