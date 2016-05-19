@@ -8,6 +8,7 @@ module.exports = function () {
 		visitor: {
 			CallExpression: function (path, state) {
 				var call = avaCalls(path);
+
 				if (call) {
 					var metadata = state.file.metadata;
 					var arr = metadata[KEY] = metadata[KEY] || [];

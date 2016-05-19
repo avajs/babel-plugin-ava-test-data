@@ -12,7 +12,7 @@ function inspect(source) {
 }
 
 test('import ava - use directly', t => {
-	var metadata = inspect(
+	const metadata = inspect(
 		`import test from 'ava';
 		test('foo', t => {});`
 	);
@@ -21,7 +21,7 @@ test('import ava - use directly', t => {
 });
 
 test('import non ava', t => {
-	var metadata = inspect(
+	const metadata = inspect(
 		`import test from 'tap';
 		test('foo', t => {});`
 	);
@@ -30,7 +30,7 @@ test('import non ava', t => {
 });
 
 test('import skip - use directly', t => {
-	var metadata = inspect(
+	const metadata = inspect(
 		`import {skip} from 'ava';
 		skip('foo', t => {});`
 	);
@@ -39,7 +39,7 @@ test('import skip - use directly', t => {
 });
 
 test('import serial - skip it', t => {
-	var metadata = inspect(
+	const metadata = inspect(
 		`import {serial} from 'ava';
 		serial.skip('foo', t => {});`
 	);
@@ -48,7 +48,7 @@ test('import serial - skip it', t => {
 });
 
 test('import serial - multiple uses', t => {
-	var metadata = inspect(
+	const metadata = inspect(
 		`import {serial} from 'ava';
 		serial('foo', t => {});
 		serial.skip('bar', t => {});`
@@ -58,7 +58,7 @@ test('import serial - multiple uses', t => {
 });
 
 test('multiple imports - multiple uses', t => {
-	var metadata = inspect(
+	const metadata = inspect(
 		`import test, {serial} from 'ava';
 		test('foo', t => {});
 		test.skip('bar', t => {});

@@ -1,9 +1,9 @@
 import test from 'ava';
-import {secondExpression} from './_helpers';
 import isAvaCall from '../lib/ava-calls';
+import {secondExpression} from './_helpers';
 
 test('straight test call', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`var test = require('ava');
 		test('foo', t => {});`
 	));
@@ -11,7 +11,7 @@ test('straight test call', t => {
 });
 
 test('test is not ava', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`var test = require('tap');
 		test('foo', t => {});`
 	));
@@ -19,7 +19,7 @@ test('test is not ava', t => {
 });
 
 test('test.skip', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`var test = require('ava');
 		test.skip('foo', t => {});`
 	));
@@ -27,7 +27,7 @@ test('test.skip', t => {
 });
 
 test('require("ava").skip', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`var test = require('ava').skip;
 		test('foo', t => {});`
 	));
@@ -35,7 +35,7 @@ test('require("ava").skip', t => {
 });
 
 test('test = require("ava").serial; test.only', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`var test = require('ava').serial;
 		test.only('foo', t => {});`
 	));
@@ -43,7 +43,7 @@ test('test = require("ava").serial; test.only', t => {
 });
 
 test('import test - straight call', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`import test from 'ava';
 		test('foo', t => {});`
 	));
@@ -51,7 +51,7 @@ test('import test - straight call', t => {
 });
 
 test('import skip ', t => {
-	var value = isAvaCall(secondExpression(
+	const value = isAvaCall(secondExpression(
 		`import {skip} from 'ava';
 		skip('foo', t => {});`
 	));

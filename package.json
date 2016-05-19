@@ -1,9 +1,9 @@
 {
   "name": "babel-plugin-ava-test-data",
   "version": "0.0.1",
-  "description": "My bee&#39;s knees module",
+  "description": "My bee's knees module",
   "license": "MIT",
-  "repository": "jamestalmage/babel-plugin-ava-test-data",
+  "repository": "avajs/babel-plugin-ava-test-data",
   "author": {
     "name": "James Talmage",
     "email": "james@talmage.io",
@@ -19,7 +19,10 @@
     "index.js"
   ],
   "keywords": [
-    ""
+    "babel-plugin",
+    "ava",
+    "test",
+    "data"
   ],
   "dependencies": {},
   "devDependencies": {
@@ -31,6 +34,11 @@
     "babel-types": "^6.7.2",
     "babylon": "^6.7.0",
     "nyc": "^6.1.1",
-    "xo": "^0.13.0"
+    "xo": "^0.15.1"
+  },
+  "xo": {
+    "rules": {
+      "xo/filename-case": 0
+    }
   }
 }

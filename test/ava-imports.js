@@ -20,7 +20,7 @@ test('avaImports', t => {
 		chain: []
 	}]);
 
-	var value = avaImports(firstStatement(`var serial = require('ava').serial;`));
+	const value = avaImports(firstStatement(`var serial = require('ava').serial;`));
 	t.deepEqual(value, [{
 		id: 'serial',
 		chain: ['serial']
